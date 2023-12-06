@@ -1,0 +1,1 @@
+protoc ./ChatMsg.proto --java_out=../java/

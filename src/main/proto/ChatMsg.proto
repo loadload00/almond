@@ -1,0 +1,56 @@
+syntax = "proto3";
+option java_package = "org.almond.webtransportchat.protobuf";
+option java_outer_classname = "ChatMsg";
+
+message Msg {
+
+  ParkType parkType = 1;
+
+  oneof Pack {
+    EventPack eventPack = 2;
+    UserMsgPack userMsgPack = 3;
+    DataPack dataPack = 4;  
+    FramePack framePack = 5;
+  }
+}
+
+enum ParkType {
+  Event_Pack = 0;
+  UserMsg_Pack = 1;
+  Data_Pack = 2;
+  Frame_Pack = 3;
+}
+
+message EventPack {
+  string username = 1;
+  string userId = 2;
+  string roomId = 3;
+  bool leave = 5;
+  bool join = 6;
+  
+}
+
+message UserMsgPack {
+  string roomId = 1;
+  string userId = 2;
+  string username = 3;
+  string content = 4;
+}
+
+message DataPack {
+  string username = 1;
+  string userId = 2;
+  string roomId = 3;
+  string data = 4;
+}
+
+message FramePack {
+  bytes frame = 1;
+  string fromId = 2;
+  string type = 3;
+  uint32 kind = 4;
+  uint64 time = 5;
+  uint32 duration = 6;
+  bool close = 7;
+}
+
