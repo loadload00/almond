@@ -12,8 +12,8 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <netty.version>4.1.101.Final</netty.version>
-    <netty.quic.version>0.0.54.Final</netty.quic.version>
+    <netty.version>4.1.104.Final</netty.version>
+    <netty.quic.version>0.0.56.Final</netty.quic.version>
     <protobuf.version>3.25.1</protobuf.version>
   </properties>
 
