@@ -194,4 +194,8 @@ public class ConnectionGroup {
     buf.writeBytes(msg);
     channel.writeAndFlush(buf);
   }
+
+  public boolean hasConnection(String id) {
+    return streamGroup.get(id) != null;
+  }
 }

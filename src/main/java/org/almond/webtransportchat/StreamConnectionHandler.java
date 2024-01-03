@@ -41,6 +41,8 @@ public class StreamConnectionHandler extends WebtransportStreamHandler {
   @Override
   protected void channelInputClosed(ChannelHandlerContext ctx) {
     QuicStreamChannel channel = (QuicStreamChannel) ctx.channel();
-    channel.close();
+    if (connectionGroup.hasConnection(channel.id().toString())) {
+      channel.close();
+    }
   }
 }

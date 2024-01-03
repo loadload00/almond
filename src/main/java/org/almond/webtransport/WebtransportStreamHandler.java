@@ -1,7 +1,6 @@
 package org.almond.webtransport;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.incubator.codec.http3.DefaultHttp3HeadersFrame;
 import io.netty.incubator.codec.http3.Http3DataFrame;
 import io.netty.incubator.codec.http3.Http3HeadersFrame;
@@ -27,7 +26,9 @@ public abstract class WebtransportStreamHandler extends H3RequestStreamInboundHa
     } else {
       Http3HeadersFrame headersFrame = new DefaultHttp3HeadersFrame();
       headersFrame.headers().status("403");
-      ctx.writeAndFlush(headersFrame).addListener(QuicStreamChannel.SHUTDOWN_OUTPUT);
+      ctx.writeAndFlush(headersFrame).addListener(f -> {
+        ctx.close();
+      });
     }
     ReferenceCountUtil.release(frame);
   }
